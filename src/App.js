@@ -7,7 +7,7 @@ import {firebase} from './firebase'
 
 function App() {
   const [personajes, setPersonajes] = useState([])
-  const [dataFirebase, setDataFirebase] = useState([])
+  // const [dataFirebase, setDataFirebase] = useState([])
   const [filter, setFilter] = useState('')
 
 
@@ -33,22 +33,22 @@ function App() {
     getPersonajes()
   }, [filter])
  //Añadimos datos a firebase 
-const add = async () => {
-  try {
-    const db = firebase.firestore()
-    const newPersonaje = {
-      buscador: filter,
-      especie: personajes.species,
-      estado: personajes.status,
-      genero: personajes.gender,
-      img: personajes.image,
-      namePerso: personajes.name,
-  }
-  console.log(personajes)
-    await db.collection("DB-personaje").add(personajes)
-  } catch (error) {} 
+// const add = async () => {
+//   try {
+//     const db = firebase.firestore()
+//     const newPersonaje = {
+//       buscador: filter,
+//       especie: personajes.species,
+//       estado: personajes.status,
+//       genero: personajes.gender,
+//       img: personajes.image,
+//       namePerso: personajes.name,
+//   }
+//   console.log(personajes)
+//     await db.collection("DB-personaje").add(personajes)
+//   } catch (error) {} 
 
-}
+// }
 
   //Realizamos llamado a firebase 
   useEffect(() => {
