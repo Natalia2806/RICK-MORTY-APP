@@ -2,11 +2,12 @@ import Logo from './assets/logo.png'
 import { useState, useEffect } from 'react'
 import { Search } from './components/Search'
 import { Card } from './components/Card'
-
+import {firebase} from './firebase'
+// import { firebase } from './firebase'
 
 function App() {
   const [personajes, setPersonajes] = useState([])
-  const [loading, setLoading] = useState(true)
+
   const [filter, setFilter] = useState('')
 
   //Realizamos llamado a la API
@@ -19,13 +20,33 @@ function App() {
         const data = await response.json()
         console.log(data.results)
         setPersonajes(data.results)
-        setLoading(false)
+        // setLoading(false)
       } catch (error) {
         console.log(error)
       }
     }
     getPersonajes()
   }, [filter])
+
+  //Realizamos llamado a firebase 
+  useEffect(() => {
+    const obtenerDatos = async () => {
+        try {
+            const db = firebase.firestore()
+            const data = await db.collection("DB-personaje").get()
+            const array = data.docs.map(item => (
+                {
+                    id: item.id, ...item.data()
+                }
+            ))
+  console.log(array)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    obtenerDatos()
+})
 
   return (
     <div className="container">
