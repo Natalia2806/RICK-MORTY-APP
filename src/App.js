@@ -2,7 +2,7 @@ import Logo from './assets/logo.png'
 import { useState, useEffect } from 'react'
 import { Search } from './components/Search'
 import { Card } from './components/Card'
-import {firebase} from './firebase'
+// import {firebase} from './firebase'
 // import { firebase } from './firebase'
 
 function App() {
@@ -51,23 +51,23 @@ function App() {
 // }
 
   //Realizamos llamado a firebase 
-  useEffect(() => {
-    const obtenerDatos = async () => {
-        try {
-            const db = firebase.firestore()
-            const data = await db.collection("DB-personaje").get()
-            const array = data.docs.map(item => (
-                {
-                    id: item.id, ...item.data()
-                }
-            ))
-            setDataFirebase(array)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    obtenerDatos()
-})
+//   useEffect(() => {
+//     const obtenerDatos = async () => {
+//         try {
+//             const db = firebase.firestore()
+//             const data = await db.collection("DB-personaje").get()
+//             const array = data.docs.map(item => (
+//                 {
+//                     id: item.id, ...item.data()
+//                 }
+//             ))
+//             // setDataFirebase(array)
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     }
+//     obtenerDatos()
+// })
 
   return (
     <div className="container">
