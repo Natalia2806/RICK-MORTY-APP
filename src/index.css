@@ -151,6 +151,22 @@ input {
 	font-weight: bold;
 }
 
+.button {
+  background-color: #e7e7e7; /* Green */
+  border: none;
+  color: var(--color-dark);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+	font-size: 1.9rem;
+}
+
+.button:hover {
+  background-color: #f44336; /* Green */
+  color: white;
+}
+
 @media screen and (min-width: 600px) {
 	.lista-personajes {
 		grid-template: auto / repeat(2, 1fr);

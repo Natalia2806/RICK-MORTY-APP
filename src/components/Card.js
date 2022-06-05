@@ -1,5 +1,5 @@
 export const Card = ({ personaje }) => {
-	return (
+	return (<>
 		<section className='personaje'>
 			<div className='personaje-header'>
 				<div className='estado'>
@@ -18,6 +18,9 @@ export const Card = ({ personaje }) => {
 					{personaje.species} <span>-</span> {personaje.gender}
 				</p>
 			</div>
+            <button className='button'>Eliminar</button>
 		</section>
+    
+        </>
 	)
 }
