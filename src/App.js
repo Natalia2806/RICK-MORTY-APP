@@ -7,8 +7,13 @@ import {firebase} from './firebase'
 
 function App() {
   const [personajes, setPersonajes] = useState([])
-
+  const [dataFirebase, setDataFirebase] = useState([])
   const [filter, setFilter] = useState('')
+
+
+
+
+
 
   //Realizamos llamado a la API
   useEffect(() => {
@@ -18,8 +23,8 @@ function App() {
           `https://rickandmortyapi.com/api/character/?name=${filter}`
         )
         const data = await response.json()
-        console.log(data.results)
         setPersonajes(data.results)
+        console.log(data.results)
         // setLoading(false)
       } catch (error) {
         console.log(error)
@@ -27,6 +32,23 @@ function App() {
     }
     getPersonajes()
   }, [filter])
+ //Añadimos datos a firebase 
+const add = async () => {
+  try {
+    const db = firebase.firestore()
+    const newPersonaje = {
+      buscador: filter,
+      especie: personajes.species,
+      estado: personajes.status,
+      genero: personajes.gender,
+      img: personajes.image,
+      namePerso: personajes.name,
+  }
+  console.log(personajes)
+    await db.collection("DB-personaje").add(personajes)
+  } catch (error) {} 
+
+}
 
   //Realizamos llamado a firebase 
   useEffect(() => {
@@ -39,8 +61,7 @@ function App() {
                     id: item.id, ...item.data()
                 }
             ))
-  console.log(array)
-
+            setDataFirebase(array)
         } catch (error) {
             console.log(error)
         }

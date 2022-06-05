@@ -11,6 +11,7 @@ export const Search = ({ filter, setFilter }) => {
                 onChange={handleInput}
 				value={filter}
 			/>
+            
 		</section>
 	)
 }
